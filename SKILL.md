@@ -25,6 +25,12 @@ If the MCP tool is unavailable, run the bundled fallback script from this skill 
 powershell -ExecutionPolicy Bypass -File scripts/now.ps1
 ```
 
+On macOS/Linux:
+
+```bash
+./scripts/now.sh
+```
+
 ## Temporal Reasoning
 
 1. Check the current time before interpreting relative dates or elapsed-time claims.
@@ -66,3 +72,5 @@ When later checking the clock, compare `timestamp` with current local time and e
 ## Scripts
 
 - `scripts/now.ps1`: Return current local and UTC time as JSON.
+- `scripts/now.sh`: Return current local and UTC time as JSON on macOS/Linux.
+- `scripts/now.mjs`: Cross-platform fallback implementation used by `now.sh`.

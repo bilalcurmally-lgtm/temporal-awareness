@@ -1,6 +1,6 @@
 # Temporal Awareness
 
-Temporal Awareness is a tiny MCP server and Codex skill that lets an AI agent check the current date/time and reason about continuity without pretending to experience time.
+Temporal Awareness is a tiny MCP server for grounding AI agents in real date/time context. It also includes an optional Codex skill that teaches the response behavior: when to check the clock, how to compare it with memory, and how to talk about continuity without pretending to experience time.
 
 It is for people building AI teammates, coding agents, companions, assistants, and workflow tools where "today", "tomorrow", "later", "when I come back", or "that thing we checked earlier" should mean something concrete.
 
@@ -13,8 +13,11 @@ The idea is simple:
 ## What It Includes
 
 - `mcp/server.mjs`: MCP server exposing `get_current_time`.
-- `SKILL.md`: Codex skill for temporal reasoning and response style.
+- `SKILL.md`: Optional Codex skill for temporal reasoning and response style.
 - `scripts/now.ps1`: PowerShell fallback for Windows users.
+- `scripts/now.sh`: shell fallback for macOS/Linux users.
+- `scripts/now.mjs`: cross-platform fallback implementation used by `now.sh`.
+- `docs/mcp-clients.md`: setup examples for Codex, Claude Desktop, Cursor, Windsurf, and generic MCP clients.
 - `examples/use-cases.md`: Practical scenarios where time awareness improves the experience.
 - `examples/cookbook.md`: Copyable patterns for continuity, stale context, timezone handling, and timestamped memory.
 
@@ -58,7 +61,7 @@ cd temporal-awareness/mcp
 npm install
 ```
 
-Add the MCP server to your Codex config:
+Add the MCP server to your AI client's MCP config. For Codex:
 
 ```toml
 [mcp_servers.temporal_awareness]
@@ -83,6 +86,8 @@ Copy-Item -Recurse temporal-awareness $env:USERPROFILE\.codex\skills\temporal-aw
 
 Restart Codex after changing MCP config.
 
+For Claude Desktop, Cursor, Windsurf, and generic MCP clients, see [`docs/mcp-clients.md`](docs/mcp-clients.md).
+
 ## Smoke Test
 
 From `temporal-awareness/mcp`:
@@ -92,6 +97,16 @@ npm test
 ```
 
 The test starts the MCP server, calls `get_current_time` for `Asia/Karachi`, and prints the structured result.
+
+Fallback scripts are also available:
+
+```bash
+./scripts/now.sh
+```
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/now.ps1
+```
 
 ## Why This Matters
 
