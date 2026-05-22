@@ -1,16 +1,24 @@
 # Use Cases
 
+For copyable implementation patterns, see [`cookbook.md`](cookbook.md).
+
 ## Continuity
 
 The user says, "I'll be back tomorrow." The agent records the timestamp. When the user returns, the agent checks the clock and can infer whether "tomorrow" has arrived.
+
+This is the flagship use case: the agent can connect a past relative phrase to the current date.
 
 ## Stale Context
 
 The agent fetched a price, build status, deployment state, or API result earlier. Before relying on it later, it checks elapsed time and decides whether to refresh the data.
 
+This helps agents avoid treating old facts as fresh facts.
+
 ## Natural Follow-Ups
 
 The user says, "Remind me later today to test this." The agent can translate "later today" into the user's local date and preserve the intended time window.
+
+This is especially useful when paired with reminders, tasks, or memory.
 
 ## Session Warmth
 
@@ -25,6 +33,8 @@ This should be used sparingly. The goal is continuity, not performative clock-wa
 When users, services, or collaborators are in different timezones, the tool can make relative language concrete:
 
 "Your time is Friday evening, but the deployment window in New York is Friday morning."
+
+This makes relative words like "today" and "tomorrow" safer in distributed work.
 
 ## Memory Hygiene
 

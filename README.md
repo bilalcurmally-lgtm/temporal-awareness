@@ -2,6 +2,8 @@
 
 Temporal Awareness is a tiny MCP server and Codex skill that lets an AI agent check the current date/time and reason about continuity without pretending to experience time.
 
+It is for people building AI teammates, coding agents, companions, assistants, and workflow tools where "today", "tomorrow", "later", "when I come back", or "that thing we checked earlier" should mean something concrete.
+
 The idea is simple:
 
 - A model does not continuously feel time pass.
@@ -14,6 +16,20 @@ The idea is simple:
 - `SKILL.md`: Codex skill for temporal reasoning and response style.
 - `scripts/now.ps1`: PowerShell fallback for Windows users.
 - `examples/use-cases.md`: Practical scenarios where time awareness improves the experience.
+- `examples/cookbook.md`: Copyable patterns for continuity, stale context, timezone handling, and timestamped memory.
+
+## Use Cases
+
+Temporal Awareness is useful when an agent needs to:
+
+- Recognize that "tomorrow" from a previous session has arrived.
+- Decide whether earlier context is stale and should be refreshed.
+- Store memories with timestamps so they can be interpreted later.
+- Resolve relative deadlines like "Friday", "later today", or "next week".
+- Coordinate across timezones.
+- Add light conversational continuity without pretending to be conscious.
+
+See [`examples/cookbook.md`](examples/cookbook.md) for concrete patterns.
 
 ## Tool Output
 
@@ -88,3 +104,9 @@ For an AI teammate, time lets the system say useful things like:
 - "It is evening in your timezone, so 'later today' probably means the remaining few hours."
 
 That small shift can make an AI feel less like a stateless answer box and more like a collaborator with continuity.
+
+## Design Principle
+
+Use time when it changes the answer.
+
+Do not make the agent announce the clock constantly. Do not make it claim it felt time pass. Let the tool provide facts, let memory provide context, and let the agent reason from both.
