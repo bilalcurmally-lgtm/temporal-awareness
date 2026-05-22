@@ -1,0 +1,4 @@
+interface:
+  display_name: "Temporal Awareness"
+  short_description: "Use real date/time context to reason about shared continuity."
+  default_prompt: "Use temporal awareness to check the current date/time and connect it to prior context when helpful."
